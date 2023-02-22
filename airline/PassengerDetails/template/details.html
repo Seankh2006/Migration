@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Flight : {{flights.id}}</h1>
+    <p>Origin : {{flights.origin}}</p>
+    <p>Destination : {{flights.destination}}</p>
+    <p>Duration : {{flights.duration}}</p>
+    <h1>Passenger</h1>
+    <ul>
+        {% for Passengerdetails in d %}
+        <li>{{Passengerdetails}}</li>
+        {% empty %} 
+        <li>No Passenger</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add Passenger</h2>
+    <br>
+    <form action="{% url 'details' %}" method="POST">
+        {% csrf_token %}
+        <p>{{flights.id}}</p>
+        <p>{{p1}}</p>
+        <p>{{p2}}</p>
+        <select name="passenger">
+            {% for passenger in list %}
+            <option value="{{passenger.id}}">{{passenger}}</option> 
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+
+    
+</body>
+</html>
